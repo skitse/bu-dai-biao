@@ -33,6 +33,37 @@
 
 逐条判定见 `evidence/rules-audit.md`。
 
+## 我们怎么取舍
+
+素材来自 54 个 humanizer 项目：本地已装的 7 个去 AI 味 skill，加上 GitHub 上细读过的 47 个（另有约 65 个浅克隆下来做规则扫描）。每条规则我们都拿三样东西去核对：本机约 63 万字的 GPT-6.x 和 Claude 语料、8 个模型的同题英文语料（slop-score），以及相关论文和厂商文档。对得上的收下，对不上的剔除或降级，理由都写在条目里。
+
+收下的，和它们经得起核对的原因：
+
+| 素材 | 来源 | 核对结果 |
+|---|---|---|
+| GPT-6.1 的防御性回复（不代表、尚未、未修改、说得太绝对） | molang163/chinese-natural-reply | 本机语料里这些词在 GPT-6.x 中是 Claude 的 4–80 倍；OpenAI 的 GPT-6 指南也点名了同类写法 |
+| 「不是……而是」要控制 | 多个中文项目 | 本机语料和同题语料都显示 Claude、DeepSeek V3.2 偏多，GPT-6.x 偏少，所以改成按模型判断 |
+| DeepSeek V4 的金句和短句排比 | V4 用户反馈汇总、bili-ai-killer | 和同题语料里 V3.2「not X but Y」全场最多的结果方向一致 |
+| 知网标红的 5 类信号（句长可预测、密度均匀、术语位置、连接词重叠、模板段） | qingshanliuci/cnki-aigc---skill | 和 Clark 等 2026、Pangram 技术报告对「结构比词更关键」的结论一致；样本只有一篇论文，标为经验 |
+| 一段式修正提示的写法 | Anthropic、OpenAI 官方指南 | 厂商针对自家模型写的，直接采用 |
+
+剔除或降级的，和理由：
+
+| 素材 | 来源 | 处理 | 理由 |
+|---|---|---|---|
+| 长短句交替、单句字数上限、段落句数配额 | 20 多个项目互相转抄 | 剔除 | 来自 2023 年检测器的突发性指标；研究显示难懂与否取决于堆叠名词、拟人化主语等，句长影响很小 |
+| 强制口语化、加第一人称和感受 | hylarucoder、humanize-kit 等 | 剔除 | 改别人稿子时等于编造；「写得像人」的提示改不动深层文风（Rallapalli 等 2026） |
+| 故意写残句、小写、错别字 | humanize-kit 等英文项目 | 剔除 | 为骗检测器设计，读者受罪 |
+| 破折号固定配额（一律删 / 每段 2 处 / 没有就加） | 多个项目，互相矛盾 | 改成按模型 | 本机和同题语料显示各模型差异极大 |
+| happycapy 的「Claude 专属词库」（however、moreover、I'd be happy to……） | happycapy-ai/Happycapy-skills | 剔除 | 同题语料里 moreover、additionally 是 GPT-4o 的独有高频词；Sun 等 2025 也把 certainly 归给 ChatGPT |
+| delve、tapestry 等英文高频词表 | Wikipedia 系清单 | 降级为背景 | 属于 2023—2024 年 GPT-4 时代；GPT-5 以后的独有高频词已完全不同 |
+| GPT-5.x 的「砍一刀」「压实」「稳稳接住」 | linux.do 口癖帖 | 降级为次要 | 本机 GPT-6.x 语料里这些词出现 0 次，6.x 的主要问题已经换成防御腔 |
+| 「Claude 爱用破折号」 | 多个项目和博客 | 改成分版本 | Opus 5 每千词 12.9 个，Opus 5.5 在 5.7 万词里只有 2 个（Arize 2026） |
+| 禁词表写进提示词 | 多个项目 | 改用法 | Antislop 和 DeepSeek V4 用户反馈都显示会反向提示；只在改稿时检查 |
+| 繁体和台湾用语规范、「您」改「你」 | chinese-content-writing-guideline | 剔除 | 作者个人的写作规范，和 AI 味无关 |
+
+完整的逐条判定见 `evidence/rules-audit.md`，项目清单见 `evidence/oss-survey-2026-11.md`。
+
 ## 为什么要分模型
 
 每个模型露馅的地方差得很远。
