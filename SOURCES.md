@@ -45,6 +45,16 @@
 - Anthropic, *How Claude's text watermark works*, 2026-08-14 <https://www.anthropic.com/news/claude-text-watermark>
 - Claude Platform Docs, *Text watermark* <https://platform.claude.com/docs/en/build-with-claude/text-watermark>
 
+## 水印鲁棒性研究
+
+- Dathathri et al., *Scalable watermarking for identifying large language model outputs*, Nature 634, 818–823, 2024 <https://doi.org/10.1038/s41586-024-08025-4>
+- Kirchenbauer et al., *On the Reliability of Watermarks for Large Language Models*, ICLR 2024 <https://arxiv.org/abs/2306.04634>
+- He et al., *Can Watermarks Survive Translation?*, ACL 2024 <https://arxiv.org/abs/2402.14007>
+- Han et al., *Robustness Assessment and Enhancement of Text Watermarking for Google's SynthID*, 2025 <https://arxiv.org/abs/2508.20228>
+- *On Google's SynthID-Text LLM Watermarking System: Theoretical Analysis and Empirical Validation*, arXiv 2603.03410 <https://arxiv.org/abs/2603.03410>
+- *Vaporizer: Breaking Watermarking Schemes for LLM Outputs*, arXiv 2605.07481 <https://arxiv.org/abs/2605.07481>
+- *AI Watermark Evidence Fails Forensic Readiness*, arXiv 2607.16010 <https://arxiv.org/abs/2607.16010>
+
 ## 检测器
 
 - Turnitin 白皮书与 FAQ <https://www.turnitin.com/whitepapers/turnitin-ai-writing-detection-model-architecture-and-testing-protocol>、<https://guides.turnitin.com/hc/en-us/articles/28477544839821-Turnitin-s-AI-writing-detection-capabilities>
