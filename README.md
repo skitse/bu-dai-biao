@@ -41,7 +41,7 @@
 
 | 素材 | 来源 | 核对结果 |
 |---|---|---|
-| GPT-6.1 的防御性回复（不代表、尚未、未修改、说得太绝对） | molang163/chinese-natural-reply | 本机语料里这些词在 GPT-6.x 中是 Claude 的 4–80 倍；OpenAI 的 GPT-6 指南也点名了同类写法 |
+| GPT-6.1 的防御性回复（不代表、尚未、未修改、说得太绝对） | molang163/chinese-natural-reply | 本机语料里这些词在 GPT-6.x 中的频率是 Claude 的 3 到 70 多倍；OpenAI 的 GPT-6 指南也点名了同类写法 |
 | 「不是……而是」要控制 | 多个中文项目 | 本机语料和同题语料都显示 Claude、DeepSeek V3.2 偏多，GPT-6.x 偏少，所以改成按模型判断 |
 | DeepSeek V4 的金句和短句排比 | V4 用户反馈汇总、bili-ai-killer | 和同题语料里 V3.2「not X but Y」全场最多的结果方向一致 |
 | 知网标红的 5 类信号（句长可预测、密度均匀、术语位置、连接词重叠、模板段） | qingshanliuci/cnki-aigc---skill | 和 Clark 等 2026、Pangram 技术报告对「结构比词更关键」的结论一致；样本只有一篇论文，标为经验 |
