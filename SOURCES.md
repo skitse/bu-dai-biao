@@ -91,6 +91,15 @@
 - molang163/chinese-natural-reply `evals/answers`（GPT-6.1-Sol 原版回答）<https://github.com/molang163/chinese-natural-reply/tree/main/evals/answers>
 - 完整调研清单见 `evidence/oss-survey-2026-11.md`
 
+## 去防御（gpt-nodefense 参考）
+
+- molang163/chinese-natural-reply 与 `scripts/agents_md.py`（AGENTS.md 常驻写法）<https://github.com/molang163/chinese-natural-reply>
+- Kiterlin/anti-defensive-writing <https://github.com/Kiterlin/anti-defensive-writing>
+- 6Kmfi6HP/avoid-overkill（GPT-5.6 防御性编程与论文自我削弱）<https://github.com/6Kmfi6HP/avoid-overkill>
+- RZX00/dialogue-skills <https://github.com/RZX00/dialogue-skills>
+- jingdq11-web/laobaixing-agent-reply-skill <https://github.com/jingdq11-web/laobaixing-agent-reply-skill>
+- linux.do「GPT 防御性笑话一则」（「10% 的话有用，90% 的话在叠甲」）<https://linux.do/t/topic/3059223>
+
 ## 开源 skill（素材）
 
 - op7418/Humanizer-zh <https://github.com/op7418/Humanizer-zh>
@@ -100,3 +109,16 @@
 - hardydai-cell/qu-ai-wei <https://github.com/hardydai-cell/qu-ai-wei>
 - hylarucoder/ai-flavor-remover <https://github.com/hylarucoder/ai-flavor-remover>
 - 本地已装：humanize-chinese、chinese-text-humanizer、humanizer-academic-zh、humanize-academic-writing、academic-writing-refiner、chinese-content-writing-guideline、humanize-kit。其中 academic-writing-refiner 和 humanize-academic-writing 针对英文论文，chinese-content-writing-guideline 针对繁体中文，只借用了个别条目。
+
+## 后训练与文风研究
+
+- Clark, Martin & Mahowald, *Why is AI-generated language so hard to understand?*, arXiv 2610.29162 <https://arxiv.org/abs/2610.29162>
+- Reinhart et al., *Do LLMs write like humans?*, PNAS 2025 <https://www.pnas.org/doi/10.1073/pnas.2422455122>
+- Rallapalli et al., *Interpretable Stylistic Variation in Human and LLM Writing*, arXiv 2604.14111 <https://arxiv.org/abs/2604.14111>
+- Lamparth, Fein et al., *Reward Bias Substitution*, arXiv 2605.27996 <https://arxiv.org/abs/2605.27996>
+- Zhang et al., *Verbalized Sampling*, arXiv 2510.01171 <https://arxiv.org/abs/2510.01171>
+- Paech et al., *Antislop*, ICLR 2026, arXiv 2510.15061 <https://arxiv.org/abs/2510.15061>
+- OpenAI, *Why language models hallucinate* <https://openai.com/index/why-language-models-hallucinate/>
+- OpenAI, *Using GPT-6* <https://developers.openai.com/api/docs/guides/latest-model>
+- Anthropic, *Prompting Claude Fable 5.1* <https://platform.claude.com/docs/en/build-with-claude/prompt-engineering/prompting-claude-fable-5-1>
+- Telegraph Test <https://fiveminutesforward.com/post/2026-10-04-telegraph-test/>
