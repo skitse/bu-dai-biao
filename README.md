@@ -1,10 +1,18 @@
-# zh-deai：针对模型的中文 humanizer
+# 不代表（bu-dai-biao）
+
+> 本仓库不代表你的稿子一定有 AI 味，也不能证明它是人写的；至于能不能过检测，仅凭这份 README 还不能完全确定。
+>
+> 上面这句是 GPT-6 的说话方式。下面的内容会好好说话。
+
+市面上的去 AI 味 skill，大多还活在 2023 年。它们郑重地教你删掉「delve」，可 GPT-6 这辈子都没说过 delve，它只会说「尚未验证」「不代表」「收据已补齐，待验收」。它们要求你长短句交替，因为三年前 GPTZero 靠「突发性」抓人；照做之后你的文章开始像 Claude 一样说话：「不是细节。是设计。」它们要你多加第一人称、多写感受，于是一篇技术文档里冒出了「说实话，家人们，这个 bug 我真的破防了」。它们一边规定破折号一律删除，一边规定每段最多两个，另一边又建议没有就加两个，三份清单同时装上，模型当场宕机。最妙的是，这些规则大多抄自同一个 Wikipedia 页面，抄的人又被下一个人抄，传到第五手时已经没人记得原文写的是 GPT-4。用这样一张清单去改 GPT-6.1 的稿子，就像拿着去年的病历给今年的病人开药：它精准删掉了本来就没有的破折号，满篇的「不能证明」「仅凭……不能确定」一个没动，最后还附上一份报告，说你的文章已经很像人了。
+
+针对模型的中文 humanizer（model-tics-zh）。
 
 先认出文字是哪个模型写的，再按那个模型的口癖去改。目前收了 GPT-6 / 6.1（Codex）、DeepSeek、Claude 三份清单，每条口癖附例子、改法和出处。可以装成 Claude Code 或 Codex 的 skill。
 
 ## 和常见 humanizer 的区别
 
-| | 常见做法 | zh-deai |
+| | 常见做法 | bu-dai-biao |
 |---|---|---|
 | 规则来源 | 改编自 Wikipedia「Signs of AI writing」和 blader/humanizer，项目之间互相转抄 | 每条口癖来自具体模型的语料统计、厂商文档或社区原话，条目里写明出处和证据强弱 |
 | 针对谁 | 一张清单对付所有模型 | GPT、DeepSeek、Claude 各一份清单，按模型判断 |
@@ -72,7 +80,7 @@ GPT-6.1 的文字满是防御：「这不代表……」「尚未验证」「我
 
 DeepSeek V4 爱造金句：「她笑了。不是温暖的笑。而是幸福的笑。」「这就够了。」评论区机器人张口就是「这条我收下了——」。
 
-Claude 爱附和、爱用口语填充词：「你说得对」开头，「其实」「真的」穿插，结尾补一行「一句话：……」。
+Claude 写稿时爱用对比反转（「这不是技术问题，是沟通问题」）和矫饰比喻（「这个参数值得拧一拧」「这一点很承重」）。它在 Claude Code 对话里的「你说得对」「一句话：」「需要我帮你做什么吗」是正常的工作交流，不在处理范围。
 
 同一组词，在不同模型里的频率能差几十倍：
 
@@ -82,7 +90,6 @@ Claude 爱附和、爱用口语填充词：「你说得对」开头，「其实�
 | 不代表 / 不等于 / 不意味 | 13–79 | 6 |
 | 收据 | 20–73 | 2 |
 | 其实 | 0–2 | 23 |
-| 你说得对 | 0–1 | 8 |
 | 不是……而是 | 0–5 | 18 |
 
 拿一张通用清单去改，结果常常很好笑：改 GPT-6.1 的稿子时，删掉了它本来就很少用的破折号和「此外」，满篇的「不代表」「尚未」原样留着。
@@ -106,9 +113,16 @@ Claude 爱附和、爱用口语填充词：「你说得对」开头，「其实�
 
 ## 实测
 
-- GPT-6 Astra 上的初步 A/B（5 道题，`codex exec`）：加 `gpt-nodefense` 规则后，字数从 1409 降到 607，防御词从 6 个降到 1 个；含否定的句子占比没变（33% 对 32%），规则已据此修订。
-- `scripts/scan.py` 在本机语料上的 GPT 口癖密度：Codex 每千字 26.1，Claude 6.7，能分开两家。
-- 5 个候选 trigger 还在测试，计划见 `triggers/README.md`。没通过的会删掉。
+GPT 去防御规则做了两轮盲评（21 道日常和工作汇报题，Claude Sonnet 打乱顺序评审）：
+
+| 轮次 | 模型 | 不加规则的平均名次 | 加规则后的平均名次 | 防御词 | 含否定的句子 |
+|---|---|---|---|---|---|
+| 第一轮 | GPT-6 Astra | 2.71 | 1.62（示例式） | 9 → 1 | 26% → 24% |
+| 第二轮 | GPT-6.1 Terra | 2.52 | 1.81（v2） | 5 → 0 | 28% → 16% |
+
+第一轮发现两个问题：只给指令时模型会把该保留的风险也删掉；示例里的坏句子会被模仿。第二轮的 v2 针对这两点做了修改，现在是 `gpt-nodefense` 的常驻规则。详见 `evidence/eval-round1-2026-11.md`、`evidence/eval-round2-2026-11.md`。
+
+`scripts/scan.py` 在本机语料上的 GPT 口癖密度：Codex 每千字 26.1，Claude 6.7，能分开两家。其余 trigger 的写作评测还没做，计划见 `triggers/README.md`。
 
 ## 文件
 
@@ -126,6 +140,7 @@ references/
   watermark.md              Claude 文本水印的原理和相关研究
 scripts/
   scan.py                   按模型扫描口癖，输出命中位置
+  paper_check.py            论文段落：逐句信息密度分析；AI 改写或总结前后的保真检查
   patterns.json             扫描用的正则，编号对应 references
 evidence/
   local-corpus-2026-11.md   本机 GPT-6.x 与 Claude 语料词频
@@ -141,18 +156,18 @@ SOURCES.md                  全部出处
 ## 安装
 
 ```bash
-git clone https://github.com/skitse/zh-deai ~/.claude/skills/zh-deai
-ln -s ~/.claude/skills/zh-deai ~/.codex/skills/zh-deai   # Codex
+git clone https://github.com/skitse/bu-dai-biao ~/.claude/skills/bu-dai-biao
+ln -s ~/.claude/skills/bu-dai-biao ~/.codex/skills/bu-dai-biao   # Codex
 ```
 
-用 CC Switch 管理的话，放进 `~/.cc-switch/skills/zh-deai`。
+用 CC Switch 管理的话，放进 `~/.cc-switch/skills/bu-dai-biao`。
 
 ### GPT 常驻去防御（gpt-nodefense）
 
-`zh-deai` 用来改稿子；`gpt-nodefense` 用来约束 GPT 自己说话，装好后 GPT 的每条中文消息都按它来，直到你在对话里说「保留防御」或「#defense-on」。
+两个 skill 分工不同：`bu-dai-biao` 只管写作（改稿子、替人写稿）；`gpt-nodefense` 管 GPT 在 Codex 日常对话里的防御腔，因为它在对话里就已经造成困扰。Claude 的对话习惯不需要类似处理。`gpt-nodefense` 用来约束 GPT 自己说话，装好后 GPT 的每条中文消息都按它来，直到你在对话里说「保留防御」或「#defense-on」。
 
 ```bash
-cd ~/.claude/skills/zh-deai
+cd ~/.claude/skills/bu-dai-biao
 python3 scripts/install_gpt_nodefense.py --dry-run   # 先看会写什么
 python3 scripts/install_gpt_nodefense.py             # 安装
 python3 scripts/install_gpt_nodefense.py --remove    # 撤销
@@ -169,6 +184,13 @@ python3 scripts/install_gpt_nodefense.py --remove    # 撤销
 ## 用法
 
 对 Claude Code 或 Codex 说「这段一股 Codex 味，改成人话」「把这段 DeepSeek 写的去 AI 味」「论文这章降一下 AI 率」。
+
+检查论文段落的信息密度，或者核对 AI 总结、改写有没有把结论说大：
+
+```bash
+python3 scripts/paper_check.py density 段落.txt
+python3 scripts/paper_check.py compare 原文.txt 改写.txt
+```
 
 单独扫描一份稿子：
 

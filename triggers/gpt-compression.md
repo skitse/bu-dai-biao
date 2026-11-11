@@ -2,18 +2,22 @@
 
 状态：草稿，待测试。
 
-## 中文版
-
 ```text
-压缩写法，指为了少写几个字，把一整句话压进一个自造名词或一个单字里：「统一验收口径后再做回归核对」「拆开核一下」「这个分支会吃掉异常」。写的人省了字，读的人得自己猜出被省掉的动作、对象和因果关系。改法：假设读者第一次看到这件事。自造名词拆回「谁对什么做了什么」（「先定好按什么标准算测试通过」），单字动词换回完整说法（「检查一下」），让真正做事的人或程序当主语（「这个分支捕获了异常，但没有处理」）。句子可以长一点，只要读者一次能看懂。
+下面四组，左边是 GPT 为了少写几个字压缩过的说法，右边是第一次看到这件事的人也能懂的说法。照右边的方式写。
+
+1. 原：如果你同意，我就按这条切。
+   改：你同意的话，我就按这个方案拆分代码。
+
+2. 原：这样就能确认 XXX 确实没被伤到。
+   改：这样就能确认 XXX 的功能没有受影响。
+
+3. 原：接下来我会把另外两个文件里真正吃目标值的位置找出来。
+   改：接下来我去找另外两个文件里，哪些地方读取了目标值。
+
+4. 原：统一验收口径后再做回归核对。
+   改：先定好按什么标准算测试通过，再把测试重新跑一遍，对比前后结果。
+
+左边的共同点：一个单字或自造名词装下了整个动作（切、伤、吃、验收口径），主语换成了不会做这件事的东西。右边把动作、对象和做事的人补了回来。句子长一点没关系，读者一次能看懂就行。
 ```
 
-## OpenAI 官方原文
-
-```text
-Avoid invented compound labels like "exact-head checks" and "editorial-row layouts", vague qualifiers, and canned transitions; use plain verbs and prepositions to state the actual relationship directly.
-
-Use plain language over jargon, and reference technical details only to the degree that it helps illustrate an idea or your work to the user.
-```
-
-依据：Clark、Martin、Mahowald, arXiv 2610.29162（长度惩罚导致堆叠名词、名词当动词、拟人主语增多）。
+来源：例 1–3 是 linux.do「gpt-5.x (codex) 中文口癖收集」帖 13 楼、65 楼的原话；例 4 按本机 GPT-6.x 语料的高频词组合。依据：Clark、Martin、Mahowald 2026（长度惩罚导致堆叠名词、名词当动词、拟人主语增多）；OpenAI GPT-6 指南「Avoid invented compound labels」。
