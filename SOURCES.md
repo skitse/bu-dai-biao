@@ -77,6 +77,20 @@
 - 央视介绍毕业论文 AI 检测原理（腾讯新闻转载），2026-06-24 <https://news.qq.com/rain/a/20260624A0BCCS00>
 - 知网、维普、万方官方页面没有公开 AIGC 检测方法，未引用。
 
+## 按模型处理的开源项目与数据（2026-11 调研新增）
+
+- makoMakoGo/fish-claude `gpt-isms-stamp-out` <https://github.com/makoMakoGo/fish-claude/blob/main/skills/gpt-isms-stamp-out/SKILL.md>
+- ItsssssJack/SlopMonster <https://github.com/ItsssssJack/SlopMonster>
+- athola/claude-night-market `model-specific-tells.md` <https://github.com/athola/claude-night-market>
+- sam-paech/slop-score（同题语料）<https://github.com/sam-paech/slop-score>
+- sam-paech/slop-forensics <https://github.com/sam-paech/slop-forensics>
+- Logic259/bili-ai-killer（DeepSeek 味规则）<https://github.com/Logic259/bili-ai-killer>
+- seyedehsanhadi/sloptrim <https://github.com/seyedehsanhadi/sloptrim>
+- hexiecs/talk-normal <https://github.com/hexiecs/talk-normal>
+- devswha/patina <https://github.com/devswha/patina>
+- molang163/chinese-natural-reply `evals/answers`（GPT-6.1-Sol 原版回答）<https://github.com/molang163/chinese-natural-reply/tree/main/evals/answers>
+- 完整调研清单见 `evidence/oss-survey-2026-11.md`
+
 ## 开源 skill（素材）
 
 - op7418/Humanizer-zh <https://github.com/op7418/Humanizer-zh>

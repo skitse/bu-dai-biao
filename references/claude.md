@@ -22,6 +22,7 @@ Claude 的中文 AI 味比 GPT、DeepSeek 轻，问题集中在开头附和、�
 | C2 | 另外 | 51.3 | 7–21 |
 | D1 | **加粗** | 3059 | 281–1726 |
 | D2 | 全角冒号「：」 | 1416 | 553–659 |
+| F | 不是……而是/是 | 18 | 0–5 |
 
 ---
 
@@ -207,6 +208,26 @@ Claude Code 和桌面端里的 Claude 加粗非常多，常见形态是「**问�
 - 改：这个项目……（读者知道材料是他给的）
 
 证据：【论文】Sun et al.：ChatGPT 爱用 such as、certainly、overall，Claude 偏爱 here、according to、based on；Claude 常用 according to the text 这类说法回指原题。中文对应关系是推断，本机未统计。
+
+---
+
+## F. 否定与对比反转
+
+Claude 的否定和 GPT 的路数不同。GPT-6.x 是防御性否定（不代表、尚未、未运行），Claude 是修辞性否定：「不是 A，是 B」「问题不在 A，在 B」。
+
+- 原：这不是一个技术问题，是一个沟通问题。
+- 改：问题出在沟通上：需求文档改了三次，开发那边只收到第一版。
+- 原：你需要的不是更多工具，是一个固定的流程。
+- 改：先把流程固定下来：每天早上看一次待办，晚上清一次。
+- 原：这不算 bug，是设计如此。
+- 改：模块状态只在启动时读一次，这是有意的。
+
+证据：
+- 【本机】「不是……而是/是」句式 Claude 每 10 万字 18 次，GPT-6.x 0–5 次。
+- 【同题】slop-score 英文语料：Claude Sonnet 4 / 4.5 的否定缩写（didn't、wasn't、never、no）每千词 8.4 / 10.8 次，其他 6 个模型 2.3–4.4 次。见 `evidence/slopscore-2025.md`。
+- 【英文】Arize 标注里「contrast reframe」占 153 处中的约 30 处；smixs 把「It is not X. It is Y.」列为报告最多的 Claude 句式；*The Economist*（2026-07）称 ChatGPT 和 Claude 每千句用「not X but Y」最多。
+
+改法：说 B，删 A。A 确实是读者的误解时，用一句话正面纠正。
 
 ---
 
