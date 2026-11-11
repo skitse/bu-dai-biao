@@ -10,7 +10,7 @@
 
 针对模型的中文 humanizer（model-tics-zh）。
 
-先认出文字是哪个模型写的，再按那个模型的口癖去改。目前收了 GPT-6 / 6.1（Codex）、DeepSeek、Claude 三份清单，每条口癖附例子、改法和出处。可以装成 Claude Code 或 Codex 的 skill。
+按写稿的模型去改：GPT 写的读 GPT 的清单，Claude 写的读 Claude 的。模型替你写稿时知道自己是谁，会自己找到对应的那一份；改别人的稿子时，告诉它这是哪个模型写的就行。目前收了 GPT-6 / 6.1（Codex）、DeepSeek、Claude 三份清单，每条口癖附例子、改法和出处。可以装成 Claude Code 或 Codex 的 skill。
 
 ## 和常见 humanizer 的区别
 
@@ -118,7 +118,7 @@ Claude 写稿时爱用对比反转（「这不是技术问题，是沟通问题�
 | 一句提示就能部分恢复被偏好训练压窄的多样性（Verbalized Sampling 2025） | 相信小提示有用，写成 `triggers/` 里的一段式修正提示 |
 | 厂商官方承认自家口癖，并给出一段话的修正提示（OpenAI GPT-6 指南、Anthropic Fable 5.1 指南） | trigger 照官方写法：给反模式起名、下定义，附前后对照例子，说明读者为什么难受 |
 | 禁词表会反向提示，规模大了就失效（Antislop 2026） | 清单只用来改稿检查，提示词里写正面描述 |
-| 不同模型有可识别的用词指纹，分类器能以 97% 的准确率认出模型（Sun 等，ICML 2025） | 先认模型，再按模型改 |
+| 不同模型有可识别的用词指纹，分类器能以 97% 的准确率认出模型（Sun 等，ICML 2025） | 每个模型单独一份清单，按模型路由；模型名未知时 `scan.py` 可以兜底 |
 
 研究细节见 `evidence/post-training-research.md`。
 

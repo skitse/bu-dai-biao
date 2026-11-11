@@ -1,17 +1,21 @@
 ---
 name: bu-dai-biao
-description: 针对模型的中文 humanizer：先认是 GPT/Codex、DeepSeek 还是 Claude 写的，再按该模型的口癖改。用户说「去AI味」「说人话」「改得像人写的」「这段一股 GPT/Codex/DeepSeek/Claude 味」「降AIGC」「知网/维普/万方 AIGC 检测」「论文降 AI 率」，或让你检查一段中文是不是 AI 写的、改掉 AI 腔时使用；你替用户写文章、报告、文档、论文、文案时也按它来。日常对话回复不用它（GPT 对话里的防御腔由 gpt-nodefense 处理）。不用于写代码和命令。
+description: 针对模型的中文 humanizer：按写稿的模型（GPT/Codex、DeepSeek、Claude）路由到对应的口癖清单再改。用户说「去AI味」「说人话」「改得像人写的」「这段一股 GPT/Codex/DeepSeek/Claude 味」「降AIGC」「知网/维普/万方 AIGC 检测」「论文降 AI 率」，或让你检查一段中文是不是 AI 写的、改掉 AI 腔时使用；你替用户写文章、报告、文档、论文、文案时也按它来。日常对话回复不用它（GPT 对话里的防御腔由 gpt-nodefense 处理）。不用于写代码和命令。
 ---
 
 # 中文去 AI 味（按模型）
 
-不同模型的 AI 味不一样。先认出是哪个模型的口癖，再只改命中的地方。
+不同模型的 AI 味不一样。按写稿的模型读对应的 reference，只改命中的地方。
 
 AI 味主要来自两处：各家不同的口癖，和后训练养成的信息压缩（堆叠名词、单字动词、省略主语和连接词）。改稿时修这两样，口语化程度按场合定。依据见 `evidence/post-training-research.md`。
 
 ## 流程
 
-1. **定来源**。用户说了是哪个模型写的，就按那个来。没说，就看文本特征（见下表），拿不准就几份 reference 都扫一遍。
+1. **定模型，路由到 reference**。按下面的顺序决定读哪一份：
+   - 你自己写稿：看系统提示里你的模型名，读自己那一份。GPT / Codex → `references/gpt-codex.md`；Claude → `references/claude.md`（英文稿加 `claude-en.md`）；DeepSeek → `references/deepseek.md`。
+   - 改别人的稿子：用户说了是哪个模型写的，就读那一份。
+   - 都不知道：问用户一句；用户也不知道，就用 `python3 scripts/scan.py 文件.txt` 看哪份清单命中最多，或者几份都扫一遍。
+   - 任何情况都加读 `references/shared.md`（各家共有的套话和信息压缩）。
 2. **定场景和读者**。按下表定语体，口语程度跟着语体走。论文、课程报告、基金本子额外读 `references/academic-cnki.md`；照着参考论文学写法、或总结文献时，按其中「模仿与总结的走样」一节做，并用 `scripts/paper_check.py` 检查。
 
    | 场合 | 语体 | 要做的 |
@@ -22,7 +26,7 @@ AI 味主要来自两处：各家不同的口癖，和后训练养成的信息�
    | 学术论文 | 期刊 | 学科术语，限定只说一次，引用具体 |
    | 公众号、社媒 | 作者本人 | 有样稿就照样稿的口头习惯 |
 用户问检测器怎么查、水印能不能去 → 读 `references/detectors.md`、`references/watermark.md`。
-3. **读对应 reference**，只读用得上的那份：
+3. **对照 reference 找命中的口癖**。下表是各份清单的典型特征，只在第 1 步不知道模型时用来兜底：
 
    | 特征 | 读 |
    |---|---|
@@ -32,7 +36,7 @@ AI 味主要来自两处：各家不同的口癖，和后训练养成的信息�
    | 各家都有的套话（赋能、值得注意的是、随着……的发展、未来可期） | `references/shared.md` |
    | 英文稿（load-bearing、"It is not X. It is Y."、"worth sitting with"） | `references/claude-en.md` |
 
-4. **扫描**（可选）：`python3 scripts/scan.py 文件.txt`，按模型列出命中的口癖和位置。没有 Python 就人工对照 reference。
+4. **扫描**（可选）：`python3 scripts/scan.py 文件.txt` 列出命中的口癖和位置，帮你别漏。没有 Python 就人工对照 reference。
 5. **改写**：
    - 只改命中的句子，其他照原样留着。
    - 事实、数字、引用、术语、作者的立场原样保留；原文没有的经历、数据和文献一律留空。
@@ -54,7 +58,7 @@ AI 味主要来自两处：各家不同的口癖，和后训练养成的信息�
 
 ## 边界
 
-- 用户问「是不是 AI 写的」，回答看到了哪些口癖、各指向哪个模型，判断留给用户。
+- 用户问「是不是 AI 写的」，回答看到了哪些口癖，判断留给用户。
 - 能否通过知网、维普、万方等检测器，如实说结果取决于平台和版本。
 - 用户问水印，按 `watermark.md` 讲清楚原理和能检测到什么。
 - 按句式判断口癖：同一个套路换个名词还是同一个套路，词替换解决不了。
