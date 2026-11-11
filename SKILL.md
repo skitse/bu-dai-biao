@@ -10,7 +10,7 @@ description: 中文去 AI 味，按模型找口癖再改。用户说「去AI味�
 ## 流程
 
 1. **定来源**。用户说了是哪个模型写的，就按那个来。没说，就看文本特征（见下表），拿不准就几份 reference 都扫一遍。
-2. **定场景**。论文、课程报告、基金本子 → 额外读 `references/academic-cnki.md`。
+2. **定场景**。论文、课程报告、基金本子 → 额外读 `references/academic-cnki.md`。用户问检测器怎么查、水印能不能去 → 读 `references/detectors.md`、`references/watermark.md`。
 3. **读对应 reference**，只读用得上的那份：
 
    | 特征 | 读 |
@@ -19,6 +19,7 @@ description: 中文去 AI 味，按模型找口癖再改。用户说「去AI味�
    | 「不是……而是……」密集、意象堆砌（量子、熵、拓扑、齿轮）、精确到小数的描写、「这就够了」 | `references/deepseek.md` |
    | 「你说得对」开头、「其实」「真的」、「一句话：」收尾、大量加粗和冒号小标题 | `references/claude.md` |
    | 各家都有的套话（赋能、值得注意的是、随着……的发展、未来可期） | `references/shared.md` |
+   | 英文稿（load-bearing、"It is not X. It is Y."、"worth sitting with"） | `references/claude-en.md` |
 
 4. **扫描**（可选）：`python3 scripts/scan.py 文件.txt`，按模型列出命中的口癖和位置。没有 Python 就人工对照 reference。
 5. **改写**：
@@ -37,4 +38,6 @@ description: 中文去 AI 味，按模型找口癖再改。用户说「去AI味�
 
 - 这不是检测器，不判断「是不是 AI 写的」。用户问，就说看到了哪些口癖、各指向哪个模型，不给百分比。
 - 不承诺能过知网、维普、万方或任何检测器。
+- 不提供去除模型水印的方法；用户问，按 `watermark.md` 讲清楚水印是什么、能检测到什么。
+- 改的是「动作」不是「词」：同一个套路换个名词还是同一个套路，按 reference 里的句式判断，不要只做词替换。
 - 用户当场的要求优先：要保留加粗、要列出所有不确定性，就照做。

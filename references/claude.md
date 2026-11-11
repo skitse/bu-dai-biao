@@ -2,6 +2,8 @@
 
 Claude 的中文 AI 味比 GPT、DeepSeek 轻，问题集中在开头附和、口语填充词和排版。下面每条都有来源；没找到依据的说法不收。
 
+英文稿见 `claude-en.md`，那边资料多得多。英文里总结出的几种「动作」（强调重要性、对比反转、裁决式强调、预告式路标、套用隐喻）在中文里同样存在，见本文末尾的对照表。
+
 ## 证据标记
 
 - **【官方】**：Anthropic 公开的 Claude 应用系统提示词（<https://platform.claude.com/docs/en/release-notes/system-prompts>）。系统提示里明令禁止的习惯，说明模型默认有这个倾向，但不能说明当前版本还有多严重。这些提示只用于 claude.ai 和 App，不用于 API。
@@ -215,3 +217,19 @@ Claude Code 和桌面端里的 Claude 加粗非常多，常见形态是「**问�
 - 「Certainly」「当然可以」开头：Sun et al. 说这是 ChatGPT 的特点。
 - 满篇破折号：证据冲突（见 D3）。
 - 「delve」「深入探讨」：Wikipedia 把 delve 归到 2023—2024 年的 GPT-4 时期。
+
+---
+
+## 从英文迁移过来的动作
+
+Arize 2026 年 9 月人工标注 Opus 5 的 5.3 万词英文输出，153 处 Claudism 里只有 9 处能被固定词表抓到，其余都是修辞动作。<https://arize.com/blog/anthropic-says-it-fixed-claudes-writing/> 这些动作在 Claude 的中文里也能看到，改法相同：
+
+| 动作 | 英文 | 中文形态 | 改法 |
+|---|---|---|---|
+| 强调重要性，不说为什么 | "This matters." "worth sitting with" | 这一点很关键、值得停下来想一想、值得注意的是 | 删，直接写后果 |
+| 对比反转 | "It is not X. It is Y." | 这不是 X 问题，是 Y 问题 | 直接说是什么 |
+| 裁决式强调 | "the honest answer", "the whole point" | 说实话、真正的问题是、最关键的是 | 删修饰，留结论 |
+| 预告式路标 | "Here's the part that surprises people" | 有意思的是、接下来是关键 | 直接说内容 |
+| 套用隐喻 | "load-bearing", "earns its keep" | 承重、托住、接住、扛住 | 换回具体说法 |
+
+版本差异：Opus 5.5 相比 Opus 5，英文破折号从每千词 12.9 个降到几乎为零，其他 Claudism 大约减半（同一来源）。本机 Claude 语料以 Opus 5.5 为主，所以 D3 破折号的频率偏低是合理的。

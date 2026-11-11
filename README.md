@@ -19,7 +19,10 @@ references/
   deepseek.md               DeepSeek R1/V3 与 V4/V4.1
   claude.md                 Claude
   shared.md                 各家都有的套话
+  claude-en.md              Claude 英文口癖（写英文论文用）
   academic-cnki.md          论文场景：知网、维普、万方
+  detectors.md              Turnitin、Pangram、知网等检测器公开了什么
+  watermark.md              Claude 文本水印是什么、能检测到什么
 scripts/
   scan.py                   按模型扫描口癖（不是检测器）
   patterns.json             扫描用的正则，编号对应 references
@@ -56,11 +59,24 @@ python3 scripts/scan.py draft.txt
 
 没有依据的说法不收。证据弱或互相冲突的，在条目里写明。
 
+## 网上针对单个模型的项目
+
+大多数 humanizer 用的是一张通用清单（多半来自 Wikipedia「Signs of AI writing」），不分模型。针对单个模型、而且有证据的不多，这几个被本仓库吸收了：
+
+- **GPT-6.1**：[molang163/chinese-natural-reply](https://github.com/molang163/chinese-natural-reply)，从两个月 GPT-6.1-Sol 中文对话里整理防御性回复，带盲评。
+- **GPT-5.x**：linux.do「[gpt-5.x (codex) 中文口癖收集](https://linux.do/t/topic/1768077)」及其衍生的[负面清单](https://linux.do/t/topic/1924570)。
+- **DeepSeek V4**：[DeepSeek V4 用户反馈汇总](https://github.com/victorchen96/deepseek_v4_rolepaly_instruct/blob/main/deepseek_v4_feedback_report_20260520.md)。
+- **Claude（英文）**：[archiewood/claudeisms](https://github.com/archiewood/claudeisms)（Claude Code 输出对比 Stack Overflow 的词频）、[claudisms.ai](https://claudisms.ai/)、[smixs 的 Claudisms 2026 field guide](https://github.com/smixs/awesome-claude-output-styles/blob/main/docs/claudisms-2026.md)、[Arize 对 Opus 5 / 5.5 的人工标注评测](https://arize.com/blog/anthropic-says-it-fixed-claudes-writing/)、[AshwinSathian/humanize-writing-skill](https://github.com/AshwinSathian/humanize-writing-skill) 的 `claude-tics.md`。
+- **知网**：[qingshanliuci/cnki-aigc---skill](https://github.com/qingshanliuci/cnki-aigc---skill)，一篇本科论文 20.6% → 10.1% 的实战经验。
+
+Claude 的中文口癖没有找到专门的项目，`claude.md` 用的是本机统计、官方系统提示和英文资料迁移。
+
 ## 不做什么
 
 - 不判断文本是不是 AI 写的。
 - 不承诺能过知网、维普、万方或任何检测器。
 - 不编造事实、数据、文献。
+- 不提供去除模型水印的方法（见 `references/watermark.md`）。
 
 ## 维护
 

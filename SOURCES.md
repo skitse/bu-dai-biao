@@ -35,6 +35,25 @@
 - linux.do「claude 这口癖是哪来的」<https://linux.do/t/topic/2900881>
 - linux.do「谈谈最近使用 Claude 的感受」<https://linux.do/t/topic/3152453>
 
+## Claude（英文）与水印
+
+- Arize, *Anthropic says it fixed Claude's writing. I ran the evals to check.*, 2026-09 <https://arize.com/blog/anthropic-says-it-fixed-claudes-writing/>
+- archiewood/claudeisms <https://github.com/archiewood/claudeisms>
+- claudisms.ai <https://claudisms.ai/>
+- smixs/awesome-claude-output-styles, *Claudisms, 2026 field guide* <https://github.com/smixs/awesome-claude-output-styles/blob/main/docs/claudisms-2026.md>
+- AshwinSathian/humanize-writing-skill（`reference/claude-tics.md` 引用 Anthropic《Prompting Claude Fable 5.1》与 *The Economist* 2026-07-30）<https://github.com/AshwinSathian/humanize-writing-skill>
+- Anthropic, *How Claude's text watermark works*, 2026-08-14 <https://www.anthropic.com/news/claude-text-watermark>
+- Claude Platform Docs, *Text watermark* <https://platform.claude.com/docs/en/build-with-claude/text-watermark>
+
+## 检测器
+
+- Turnitin 白皮书与 FAQ <https://www.turnitin.com/whitepapers/turnitin-ai-writing-detection-model-architecture-and-testing-protocol>、<https://guides.turnitin.com/hc/en-us/articles/28477544839821-Turnitin-s-AI-writing-detection-capabilities>
+- Emi & Spero, Pangram 技术报告 <https://arxiv.org/abs/2402.14873>；<https://pangram.com/research/how-it-works>
+- Pangram 第三方评测汇总 <https://www.pangram.com/blog/third-party-pangram-evals>
+- *Why AI Detection Fails for Academic Integrity*, arXiv 2608.11256 <https://arxiv.org/abs/2608.11256>
+- qingshanliuci/cnki-aigc---skill <https://github.com/qingshanliuci/cnki-aigc---skill>
+- 知网 AIGC 检测服务系统报道（OSCHINA）<https://www.oschina.net/news/258083>
+
 ## 跨模型研究
 
 - Sun et al., *Idiosyncrasies in Large Language Models*, ICML 2025 <https://arxiv.org/abs/2502.12150>

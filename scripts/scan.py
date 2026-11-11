@@ -39,7 +39,10 @@ def main(argv):
     text = sys.stdin.read() if src == "-" else Path(src).read_text(encoding="utf-8")
     text = strip_code(text)
     summary_only = "--summary" in argv
-    n_cjk = len(re.findall(r"[一-鿿]", text)) or 1
+    n_cjk = len(re.findall(r"[一-鿿]", text))
+    n_en = len(re.findall(r"[A-Za-z]+", text))
+    # 英文按词计，1 词约折合 1.5 个汉字
+    n_units = (n_cjk + int(n_en * 1.5)) or 1
     lines = text.splitlines()
     starts, pos = [], 0
     for ln in lines:
@@ -65,9 +68,9 @@ def main(argv):
             for m in p["rx"].finditer(text):
                 hits.append((p["id"], line_of(m.start()), m.group(0), p["hint"], m.start(), m.end()))
                 score += p["weight"]
-        results[model] = (score / n_cjk * 1000, hits)
+        results[model] = (score / n_units * 1000, hits)
 
-    print(f"汉字数：{n_cjk}")
+    print(f"汉字数：{n_cjk}  英文词数：{n_en}")
     print("模型        加权密度(每千字)  命中数")
     for model, (dens, hits) in sorted(results.items(), key=lambda x: -x[1][0]):
         print(f"{model:<12}{dens:>14.1f}{len(hits):>8}")
@@ -76,7 +79,7 @@ def main(argv):
     for model, (dens, hits) in results.items():
         if not hits:
             continue
-        print(f"\n== {model}（对照 references/{'gpt-codex' if model == 'gpt-codex' else model}.md）")
+        print(f"\n== {model}（对照 references/{model}.md）")
         hits.sort(key=lambda h: (h[0], h[4]))
         for pid, ln, word, hint, s, e in hits:
             ctx = text[max(0, s - 15):e + 15].replace("\n", " ")
