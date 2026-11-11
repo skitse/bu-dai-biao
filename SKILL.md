@@ -1,6 +1,6 @@
 ---
 name: zh-deai
-description: 中文去 AI 味，按模型找口癖再改。用户说「去AI味」「说人话」「改得像人写的」「这段一股 GPT/Codex/DeepSeek/Claude 味」「降AIGC」「知网/维普/万方 AIGC 检测」「论文降 AI 率」，或让你检查一段中文是不是 AI 写的、改掉 AI 腔时使用。也用于约束你自己写给用户的中文。不用于写代码、命令和英文文本。
+description: 针对模型的中文 humanizer：先认是 GPT/Codex、DeepSeek 还是 Claude 写的，再按该模型的口癖改。用户说「去AI味」「说人话」「改得像人写的」「这段一股 GPT/Codex/DeepSeek/Claude 味」「降AIGC」「知网/维普/万方 AIGC 检测」「论文降 AI 率」，或让你检查一段中文是不是 AI 写的、改掉 AI 腔时使用。也用于约束你自己写给用户的中文。不用于写代码、命令和英文文本。
 ---
 
 # 中文去 AI 味（按模型）
